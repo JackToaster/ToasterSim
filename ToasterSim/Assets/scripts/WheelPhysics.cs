@@ -62,7 +62,6 @@ public class WheelPhysics : MonoBehaviour {
 			//calculate the sideways force on the robot (in m/s^2)
 			double sideForce = Mathf.Sin (Mathf.Deg2Rad * robotAngular.y) * Vector3.Project (robotVel, robot.transform.rotation * Vector3.forward).magnitude;
 
-			print (sideForce);
 			//calculate the lateral velocity the robot should have (in m/s)
 			double lateralVel;
 			if (sideForce >= 0) {

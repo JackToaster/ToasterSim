@@ -8,15 +8,20 @@ public class CameraScript : MonoBehaviour
 {
 	public enum CameraMode
 	{
-		Track,
+		Track = 0,
 		//follow the robot, but don't rotate
-		Chase,
+		Chase = 1,
 		//follow the robot and rotate
-		BirdsEye,
-		//follow directly above the robot
-		DriverStation,
+		BirdsEye = 2,
+		//follow directly above the robot with ortho projection
+		DriverStation = 3
 		//fixed camera in driverstation
 	}
+
+	//camera gameObject
+	public Camera cam;
+
+	public GameObject driverStation;
 
 	//mode that the camera is in
 	public CameraMode camMode;
@@ -50,6 +55,8 @@ public class CameraScript : MonoBehaviour
 	{
 		//variable for the target rTransform of the camera
 		rTransform target = new rTransform();
+
+		//calculate the position/rotation of the camera
 		switch (camMode) {
 		case CameraMode.Track:
 			target.position = robotTransform.position + Quaternion.Euler(0f,270f,0f) * cameraOffset.position;
@@ -57,7 +64,15 @@ public class CameraScript : MonoBehaviour
 			break;
 		case CameraMode.Chase:
 			target.position = Quaternion.Euler(0f, robotTransform.rotation.y, 0f) * cameraOffset.position + robotTransform.position;
-			target.rotation = new Vector3(0, robotTransform.rotation.y, 0) + cameraOffset.rotation;
+			target.rotation = new Vector3(0f, robotTransform.rotation.y, 0f) + cameraOffset.rotation;
+			break;
+		case CameraMode.BirdsEye:
+			target.rotation = new Vector3 (90f, 270f, 0f);
+			target.position = robotTransform.position + new Vector3(0f, 100f, 0f);
+			break;
+		case CameraMode.DriverStation:
+			target.position = driverStation.transform.position + Quaternion.Euler(0f,270f,0f) * cameraOffset.position;
+			target.rotation = cameraOffset.rotation + new Vector3(0f, 270f, 0f);
 			break;
 		default:
 			//something messed up!
@@ -86,8 +101,26 @@ public class CameraScript : MonoBehaviour
 		getRobotPosition ();
 		cameraTransform = getCameraTarget ();
 		setCameraTransform ();
+
+		//if the camera is in birdseye mode, go to orthographic projection
+		if (camMode == CameraMode.BirdsEye) {
+			cam.orthographic = true;
+			cam.orthographicSize = cameraOffset.position.y;
+		} else {
+			cam.orthographic = false;
+		}
 	}
-	
+
+	//called when things are changed in the editor
+	void OnValidate(){
+		if (camMode == CameraMode.BirdsEye) {
+			cam.orthographic = true;
+			cam.orthographicSize = cameraOffset.position.y;
+		} else {
+			cam.orthographic = false;
+		}
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -97,6 +130,12 @@ public class CameraScript : MonoBehaviour
 		cameraTransform.lerp(1.0 - PositionSmoothing, 1.0 - AngleSmoothing,  getCameraTarget ());
 		//set the camera's transform to its position
 		setCameraTransform ();
+	}
+
+	//go to next camera mode
+	public void incrementCamMode(){
+		camMode = (CameraMode)(((int)camMode + 1) % 4);
+		OnValidate ();
 	}
 }
 	
