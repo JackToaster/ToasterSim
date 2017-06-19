@@ -14,8 +14,10 @@ public class CameraScript : MonoBehaviour
 		//follow the robot and rotate
 		BirdsEye = 2,
 		//follow directly above the robot with ortho projection
-		DriverStation = 3
+		DriverStation = 3,
 		//fixed camera in driverstation
+		FullField = 4
+		//birdseye of the whole field
 	}
 
 	//camera gameObject
@@ -36,6 +38,12 @@ public class CameraScript : MonoBehaviour
 	public double AngleSmoothing;
 	//the robot body or driver station to follow
 	public GameObject cameraTarget;
+
+	//speed at which the camera zooms
+	public double zoomSpeed = 0;
+
+	//current zoom
+	double zoom = 1;
 
 	//position and rotation of robot
 	rTransform robotTransform;
@@ -59,20 +67,26 @@ public class CameraScript : MonoBehaviour
 		//calculate the position/rotation of the camera
 		switch (camMode) {
 		case CameraMode.Track:
-			target.position = robotTransform.position + Quaternion.Euler(0f,270f,0f) * cameraOffset.position;
+			target.position = robotTransform.position + Quaternion.Euler(0f,270f,0f) * (cameraOffset.position * (float) zoom);
 			target.rotation = cameraOffset.rotation + new Vector3(0f, 270f, 0f);
 			break;
 		case CameraMode.Chase:
-			target.position = Quaternion.Euler(0f, robotTransform.rotation.y, 0f) * cameraOffset.position + robotTransform.position;
+			target.position = Quaternion.Euler(0f, robotTransform.rotation.y, 0f) * (cameraOffset.position * (float) zoom) + robotTransform.position;
 			target.rotation = new Vector3(0f, robotTransform.rotation.y, 0f) + cameraOffset.rotation;
 			break;
 		case CameraMode.BirdsEye:
 			target.rotation = new Vector3 (90f, 270f, 0f);
 			target.position = robotTransform.position + new Vector3(0f, 100f, 0f);
+			cam.orthographicSize =  cameraOffset.position.y * (float) zoom;
 			break;
 		case CameraMode.DriverStation:
-			target.position = driverStation.transform.position + Quaternion.Euler(0f,270f,0f) * cameraOffset.position;
+			target.position = driverStation.transform.position + Quaternion.Euler(0f,270f,0f) * (cameraOffset.position * (float) zoom);
 			target.rotation = cameraOffset.rotation + new Vector3(0f, 270f, 0f);
+			break;
+		case CameraMode.FullField:
+			target.rotation = new Vector3 (90f, 270f, 0f);
+			target.position = new Vector3 (0f, 100f, 0f);
+			cam.orthographicSize = cameraOffset.position.y * (float) zoom;
 			break;
 		default:
 			//something messed up!
@@ -115,8 +129,11 @@ public class CameraScript : MonoBehaviour
 	void OnValidate(){
 		if (camMode == CameraMode.BirdsEye) {
 			cam.orthographic = true;
-			cam.orthographicSize = cameraOffset.position.y;
-		} else {
+			cam.orthographicSize = cameraOffset.position.y * (float) zoom;
+		} else if (camMode == CameraMode.FullField) {
+			cam.orthographic = true;
+			cam.orthographicSize = cameraOffset.position.y * (float) zoom;
+		}else{
 			cam.orthographic = false;
 		}
 	}
@@ -124,17 +141,22 @@ public class CameraScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		//update zoom
+		zoom +=  zoomSpeed * Input.GetAxis("Scroll");
+
 		//get the robot's position
 		getRobotPosition ();
 		//smoothly interpolate between the position and the target
 		cameraTransform.lerp(1.0 - PositionSmoothing, 1.0 - AngleSmoothing,  getCameraTarget ());
 		//set the camera's transform to its position
 		setCameraTransform ();
+
+
 	}
 
 	//go to next camera mode
 	public void incrementCamMode(){
-		camMode = (CameraMode)(((int)camMode + 1) % 4);
+		camMode = (CameraMode)(((int)camMode + 1) % 5);
 		OnValidate ();
 	}
 }
