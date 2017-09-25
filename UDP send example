@@ -1,0 +1,22 @@
+from struct import *
+import socket
+
+UDP_IP = "0.0.0.0"
+UDP_PORT = 99999
+
+angle = 0
+x = 0
+y = 0
+
+packed = pack('>fff', angle, x, y)
+
+sum = 0
+for c in packed:
+        sum += ord(c)
+
+sum = sum % 256
+
+packed = pack('>fffB', angle, x, y, sum)
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
+sock.sendto(packed, (UDP_IP, UDP_PORT))
