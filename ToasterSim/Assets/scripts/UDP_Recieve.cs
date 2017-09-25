@@ -8,6 +8,8 @@ using System.Threading;
 using UnityEngine;
 
 public class UDP_Recieve : MonoBehaviour{
+	static bool ping = true;
+
 	UdpClient client;
 	Thread receiveThread;
 
@@ -26,13 +28,19 @@ public class UDP_Recieve : MonoBehaviour{
 		receiveThread.Start();
 	}
 
+	void Update(){
+		ping = true;
+	}
+
 	//run forever in a separate thread.
 	private void ReceiveData(){
 		client = new UdpClient(port);
-
-		while (true) {
+		IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+		client.Client.ReceiveTimeout = 1000;
+		while (ping) {
+			ping = false;
 			try{
-				IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+				
 				byte[] data = client.Receive(ref anyIP);
 				string text = Encoding.UTF8.GetString(data);
 				print("Recieved UDP Packet: " + text);
