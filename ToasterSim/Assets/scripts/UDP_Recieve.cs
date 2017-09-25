@@ -14,7 +14,7 @@ public class UDP_Recieve : MonoBehaviour{
 	Thread receiveThread;
 
 	orientation lastRecieved;
-	bool ready = false;
+	static bool ready = false;
 
 	public int port;
 
@@ -28,17 +28,16 @@ public class UDP_Recieve : MonoBehaviour{
 		receiveThread.Start();
 	}
 
-	void Update(){
-		ping = true;
+	void OnApplicationQuit(){
+		ping = false;
 	}
-
 	//run forever in a separate thread.
 	private void ReceiveData(){
 		client = new UdpClient(port);
 		IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
 		client.Client.ReceiveTimeout = 1000;
 		while (ping) {
-			ping = false;
+			//ping = false;
 			try{
 				
 				byte[] data = client.Receive(ref anyIP);
