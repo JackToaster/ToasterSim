@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class set_position : MonoBehaviour {
 	public Rigidbody rb;
-	public UDP_Recieve reciever;
+	public Reciever_Interface reciever;
 	rTransform newer;
 	float newTime = 0;
 	rTransform older;
