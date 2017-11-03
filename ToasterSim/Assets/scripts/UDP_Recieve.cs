@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Threading;
 using UnityEngine;
 
-public class UDP_Recieve : MonoBehaviour, Reciever_Interface{
+public class UDP_Recieve : MonoBehaviour{
 	static bool ping = true;
 
 	UdpClient client;

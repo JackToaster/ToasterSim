@@ -4,43 +4,46 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using LCM;
+//using LCM.LCM;
 
-public class LCM_Recieve : MonoBehaviour, Reciever_Interface {
+public class LCM_Recieve : MonoBehaviour{
 	private bool ready = false;
 	//lcm instance
-	LCM.LCM lcm;
+	//LCM.LCM lcm;
 	//position message class
-	exlcm.position_t position_msg;
+	//exlcm.position_t position_msg;
 
-	orientation lastOrientation;
+	//orientation lastOrientation;
 
 	// Use this for initialization
 	void Start () {
-		try{
+		/*try{
 			//create LCM object
-			lcm = new LCM.LCM.LCM();
+			lcm = new LCM.;
 			//lcm.SubscribeAll(new UnitySubscriber());
 		}catch(Exception e){
 			print (e.ToString);
-		}
+		}*/
 	}
 
 	//returns whether or not data is ready to be read.
 	bool isReady (){
-		if (ready) {
+		/*if (ready) {
 			ready = false;
 			return true;
 		} else {
 			return false;
-		}
+		}*/
+		return false;
 	}
 
 	//returns an orientation object containing the data recieved from LCM
-	orientation getOrientation ();
+	orientation getOrientation (){
+		return new orientation ();
+	}
 
 
-	internal class UnitySubscriber : LCM.LCM.LCMSubscriber {
+	/*internal class UnitySubscriber : LCM.LCM.LCMSubscriber {
 		public void MessageReceived(LCM.LCM lcm, string channel, LCM.LCM.LCMDataInputStream dins){
 			if (channel == "EXAMPLE") {
 				print ("Recieved LCM message on EXAMPLE channel");
@@ -52,6 +55,6 @@ public class LCM_Recieve : MonoBehaviour, Reciever_Interface {
 				ready = true;
 			}
 		}
-	}
+	}*/
 
 }
