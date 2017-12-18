@@ -16,8 +16,10 @@ public class CameraScript : MonoBehaviour
 		//follow directly above the robot with ortho projection
 		DriverStation = 3,
 		//fixed camera in driverstation
-		FullField = 4
+		FullField = 4,
 		//birdseye of the whole field
+        VR = 5
+        //Camera in driverstation for VR
 	}
 
 	//camera gameObject
@@ -88,6 +90,11 @@ public class CameraScript : MonoBehaviour
 			target.position = new Vector3 (0f, 100f, 0f);
 			cam.orthographicSize = cameraOffset.position.y * (float) zoom;
 			break;
+        case CameraMode.VR:
+            target.rotation = new Vector3 (0f, 0f, 0f);
+            target.position = new Vector3(9f, 0.5f, 1.5f);
+            cam.orthographicSize = cameraOffset.position.y * (float)zoom;
+        break;
 		default:
 			//something messed up!
 			print ("Failed to read camera mode. Setting default values.");

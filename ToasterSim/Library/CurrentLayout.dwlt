@@ -365,9 +365,9 @@ MonoBehaviour:
     height: 423
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: d6060000
     m_LastClickedID: 0
-    m_ExpandedIDs: 90fbffffa6fbffff000000001e280000482800008e280000
+    m_ExpandedIDs: a6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -422,9 +422,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 9.167002, y: -2.1213086, z: 1.025991}
+    m_Target: {x: 4.9040966, y: -2.6172004, z: -1.0110849}
     speed: 2
-    m_Value: {x: 9.167002, y: -2.1213086, z: 1.025991}
+    m_Value: {x: 4.9040966, y: -2.6172004, z: -1.0110849}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -447,9 +447,9 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.09935141, y: 0.64249384, z: -0.084535666, w: 0.7551058}
+    m_Target: {x: -0.21994726, y: 0.6809129, z: -0.22664866, w: -0.6607657}
     speed: 2
-    m_Value: {x: 0.09935141, y: 0.64249384, z: -0.084535666, w: 0.7551058}
+    m_Value: {x: -0.21994726, y: 0.6809129, z: -0.22664866, w: -0.6607657}
   m_Size:
     m_Target: 11.503826
     speed: 2
@@ -529,19 +529,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/materials/Textures
+    - Assets/scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/materials/Textures
+  - Assets/scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\ToasterSim\ToasterSim
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c2270000
-    m_LastClickedID: 10178
-    m_ExpandedIDs: 000000003627000072270000be270000e82700002a29000000ca9a3bffffff7f
+    m_SelectedIDs: f2270000
+    m_LastClickedID: 10226
+    m_ExpandedIDs: 000000003627000072270000c6270000f22700004229000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -569,7 +569,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003627000072270000be270000e82700002a290000
+    m_ExpandedIDs: 000000003627000072270000c6270000f227000042290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -597,7 +597,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 30c5ffff746bffffba240000000000008c28000088250000ca230000
+    m_ExpandedInstanceIDs: 30c5ffff746bffffba240000000000008c28000088250000ca2300008a270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
