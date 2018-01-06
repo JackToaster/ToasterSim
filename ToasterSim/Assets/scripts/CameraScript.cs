@@ -91,8 +91,8 @@ public class CameraScript : MonoBehaviour
 			cam.orthographicSize = cameraOffset.position.y * (float) zoom;
 			break;
         case CameraMode.VR:
-            target.rotation = new Vector3 (0f, -90f, 0f);
-            target.position = new Vector3(9.16f, 1.324f, 1.927f);
+            target.rotation = new Vector3 (17.178f, -106.465f, 0f);
+            target.position = new Vector3(9.486f, 1.735f, 2.133f);
             cam.orthographicSize = cameraOffset.position.y * (float)zoom;
         break;
 		default:
