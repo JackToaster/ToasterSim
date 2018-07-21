@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/drill_elements.unity
+  isLoaded: 1
+  isActive: 1
