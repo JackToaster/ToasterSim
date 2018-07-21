@@ -5,7 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneScript : MonoBehaviour {
     public string nextScene;
-
+    
+    void Start() {
+        UnityEngine.XR.InputTracking.Recenter();
+    }
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetButtonDown("Reset")){

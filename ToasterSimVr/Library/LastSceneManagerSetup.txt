@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/drill_elements.unity
+- path: Assets/Scenes/open_field.unity
   isLoaded: 1
   isActive: 1
