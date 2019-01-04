@@ -13,7 +13,7 @@ public class SceneScript : MonoBehaviour {
 	void Update () {
 		if(Input.GetButtonDown("Reset")){
             print("Resetting current scene");
-            Scene active = SceneManager.GetActiveScene();
+            UnityEngine.SceneManagement.Scene active = SceneManager.GetActiveScene();
             SceneManager.LoadScene(active.name);
         }else if(Input.GetButtonDown("Switch")){
             print("Switching scenes");

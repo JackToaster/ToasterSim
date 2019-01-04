@@ -1,4 +1,6 @@
 {
-	"process_id" : 10078,
-	"version" : "2017.2.0f3"
+	"process_id" : 3443,
+	"version" : "2018.3.0f2",
+	"app_path" : "/opt/Unity/Editor/Unity",
+	"app_contents_path" : "/opt/Unity/Editor/Data"
 }

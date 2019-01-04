@@ -1,0 +1,9 @@
+com.TheFlyingToasters.ToasterSimVr
+drawable app_banner
+mipmap app_icon
+mipmap app_icon_round
+string app_name
+string lib_name
+style BaseUnityTheme
+style UnityThemeSelector
+style UnityThemeSelector_Translucent
