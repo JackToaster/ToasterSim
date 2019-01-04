@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class robotDriver : MonoBehaviour
 {
-    public WheelPhysics wheels;
+    private WheelInterface wheels;
     public float inputRampRate;
 
     private float leftThrottle;
     private float rightThrottle;
+
+    void Start(){
+	    wheels = (WheelInterface) GetComponent<WheelInterface>();
+    } 
+
     // Update is called once per frame
     void FixedUpdate()
     {

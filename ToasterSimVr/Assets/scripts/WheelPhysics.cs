@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheelPhysics : MonoBehaviour {
+public class WheelPhysics : WheelInterface {
 	//rigidbody to apply force to
 	public Rigidbody robot;
     public Vector3 comOffset;
@@ -77,7 +77,8 @@ public class WheelPhysics : MonoBehaviour {
         }
     }
 
-	public void setThrottles(float left, float right){
+	override public void setThrottles(float left, float right){
+
 		leftThrottle = left;
 		rightThrottle = right;
 	}

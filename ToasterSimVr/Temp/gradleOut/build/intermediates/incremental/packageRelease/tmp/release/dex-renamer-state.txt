@@ -1,4 +1,0 @@
-#Thu Jan 03 22:26:36 EST 2019
-base.0=/home/jack/git/ToasterSim/ToasterSimVr/Temp/gradleOut/build/intermediates/transforms/dexMerger/release/0
-path.0=classes.dex
-renamed.0=classes.dex
