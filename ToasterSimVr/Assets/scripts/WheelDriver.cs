@@ -45,6 +45,10 @@ public class WheelDriver : WheelInterface {
 		
 		float lTorque = leftMotorVel / maxVel * stationaryTorque + l * stationaryTorque;	
 		float rTorque = rightMotorVel / maxVel * stationaryTorque + r * stationaryTorque;
+		
+		print(leftMotorVel);
+		print(rightMotorVel);
+
 
 		// Calculate the total normal force to find the total output force
 		float leftNorm = 0;
@@ -63,7 +67,7 @@ public class WheelDriver : WheelInterface {
 		
 		float rightMaxTorque = rightNorm * COF;
 		float rightAppliedTorque = Mathf.Clamp(rTorque, -rightMaxTorque, rightMaxTorque);
-		
+		if(leftAppliedTorque != 0){ 	
 		// Apply the torque.
 		for(int i = 0; i < leftW.Length; i++){
 			// How much of the total force is applied
@@ -80,6 +84,8 @@ public class WheelDriver : WheelInterface {
 			Debug.DrawRay(wheelO.transform.position, forceVector);	
 			wheel.AddForce(forceVector);	
 		}
+		}
+		if(rightAppliedTorque != 0){
 		for(int i = 0; i < rightW.Length; i++){
 			// How much of the total force is applied
 			float forcePercent = rightContact[i].getContactForce().magnitude / rightNorm;
@@ -95,10 +101,11 @@ public class WheelDriver : WheelInterface {
 			Debug.DrawRay(wheelO.transform.position, forceVector);	
 			wheel.AddForce(forceVector);	
 		}
+		}
 	}
 
 	override public void setThrottles(float left, float right){
-		l = 0.0f;
-		r = 0.0f;
+		l = left;
+		r = right;
 	}
 }
